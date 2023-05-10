@@ -12,11 +12,12 @@ namespace ariel {
             
         public:
             Ninja(Point loc,int score,string name);
-            void setSpeed(int s);
+            void setSpeed(int speed);
             void move(Character* enemy);
             void slash(Character* enemy);
-            virtual void print() override;
+            void print() override;
             const std::type_info& getType() const override;
+            //void destructor() override;
 
 
     };

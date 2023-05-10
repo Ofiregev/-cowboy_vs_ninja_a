@@ -2,6 +2,7 @@
 #define TEAM_HPP
 #include <iostream>
 #include <string>
+#include <array>
 #include "Character.hpp"
 #include "Point.hpp"
 #include "Cowboy.hpp"
@@ -13,8 +14,9 @@ using namespace std;
      
 namespace ariel {
     class Team {
+        
         private:
-            Character* members[10] = {};
+            std::array<Character*, 10> members{};
             Character& team_leader;
         public:
             Team(Character *leader);

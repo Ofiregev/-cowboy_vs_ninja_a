@@ -8,7 +8,7 @@ using namespace std;
 namespace ariel {
     class Team2 : public Team {
         public:
-            void print();
+            void print() override;
             
 
 

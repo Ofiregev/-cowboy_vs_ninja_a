@@ -10,8 +10,8 @@ namespace ariel {
             double point_x;
             double point_y;
         public:
-            Point(double x, double y);
-            double distance(Point p);
+            Point(double point_x, double point_y);
+            double distance(Point point);
             double getX();
             double getY();
             Point moveTowards(Point dest, double distance);

@@ -6,9 +6,9 @@
 using namespace std;
      
 namespace ariel {
-    class SmartTeam : protected Team {
+    class SmartTeam : public Team {
         public:
-            void print();
+            void print() override;
             
 
 

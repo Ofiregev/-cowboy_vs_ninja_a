@@ -17,8 +17,8 @@ namespace ariel
     void Team::add(Character* warrior) {
     if (Cowboy* cowboy = dynamic_cast<Cowboy*>(warrior)) {
         
-        for (int i = 0; i < 10; i++) {
-            if (!members[i]) {
+        for (size_t i = 0; i < 10; i++) {
+            if (!members.at(i)) {
                 members[i] = cowboy;
                 break;
             }
@@ -26,7 +26,7 @@ namespace ariel
     }
     else if (Ninja* ninja = dynamic_cast<Ninja*>(warrior)) {
         
-        for (int i = 0; i < 10; i++) {
+        for (size_t i = 0; i < 10; i++) {
             if (!members[i]) {
                 members[i] = ninja;
                 break;
@@ -40,7 +40,7 @@ namespace ariel
     void Team::findClosestTeamLeader()
     {
         double minimal_dist = 100000;
-        for (int i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)
         {
             if (members[i]->isAlive() && members[i]->distance(&team_leader) < minimal_dist)
             {
@@ -55,7 +55,7 @@ namespace ariel
     // {
     //     Character victim;
     //     double minimal_dist = 100000;
-    //     for (int i = 0; i < 10; i++)
+    //     for (size_t i = 0; i < 10; i++)
     //     {
     //         if (enemies->members[i].isAlive())
     //         { // check if enemy is alive
@@ -75,7 +75,7 @@ namespace ariel
 
         Character *victim = nullptr;
         double minimal_dist = 100000;
-        for (int i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)
         {
             if (enemies->members[i] && enemies->members[i]->isAlive())
             {
@@ -103,7 +103,7 @@ namespace ariel
         //enemies->print();
         Character *victim = findClosestVictim(enemies);
         //this->print();
-        for (int i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)
         {
             if (members[i] && members[i]->isAlive())
             {
@@ -134,7 +134,7 @@ namespace ariel
                 }
                 else
                 {
-                    cout << typeid(*members[i]).name() << endl;
+                    //cout << typeid(*members[i]).name() << endl;
                     cout << "Member is neither Cowboy nor Ninja!" << endl;
                 }
             }else{
@@ -169,7 +169,7 @@ namespace ariel
     {
         //cout << "still alive" << endl;
         int count = 0;
-        for (int i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)
         {
             if (members[i] && members[i]->isAlive())
             {
@@ -183,7 +183,7 @@ namespace ariel
     {
         cout << "The team leader is " << team_leader.getName() << "." << endl;
         cout << "The members of the team are:" << endl;
-        for (int i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)
         {
             if (members[i])
             {
@@ -195,7 +195,7 @@ namespace ariel
 
     void Team::destructor()
     {
-        for (int i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)
         {
             if (!members[i]->getName().empty())
             {

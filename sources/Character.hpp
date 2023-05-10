@@ -12,7 +12,7 @@ namespace ariel {
             int score;
             string name;
         public:
-            Character() : location(0, 0), score(0), name("") {}
+            Character();
             Character(Point loc, int score, string name);
             bool isAlive();
             double distance ( Character* player);
@@ -24,6 +24,7 @@ namespace ariel {
             void setScore(int score);
             void setLocation(Point loc);
             virtual const std::type_info& getType() const;
+            //virtual void destructor();
 
 
 
