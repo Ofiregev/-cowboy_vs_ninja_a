@@ -46,3 +46,48 @@ TEST_CASE("Test 2 - Initialization - Characters")
     n1.slash(&n2);
     CHECK(n2.getScore() == 100); // the ninja is too far
 }
+TEST_CASE("Test  - attack")
+{
+    Point p1(1, 2), p2(2,2), p3(15,20), p4(32,5);
+    Cowboy *tom = new Cowboy("Tom", p1);
+    Cowboy *sam = new Cowboy("sam", p4);
+    OldNinja *sushi = new OldNinja("sushi", p2);
+    YountNinja *sashimi = new YountNinja("sashimi", p3);
+    Cowboy *ben = new Cowboy("ben", p1);
+    TrainedNinja *chai = new TrainedNinja("cahi", p2);
+    YountNinja *fol = new YountNinja("fol", p3);
+    Cowboy *erv = new Cowboy("erv", p1);
+    Team team_a(tom);
+    team_a.add(sushi);
+    team_a.add(sashimi);
+    team_a.add(ben);
+    CHECK(team_a.stillAlive() == 3);
+    Team team_b(sam);
+    team_b.add(fol);
+    team_b.add(erv);
+    team_b.add(chai);
+    Character *victim = team_a.findClosestVictim(&team_b);
+    CHECK(victim->getName() == "erv");
+    CHECK(team_b.stillAlive() == 3);
+    team_a.print();
+    team_a.attack(&team_b);
+    team_b.print();
+    CHECK(team_b.stillAlive() == 0);
+    CHECK_THROWS(team_a.attack(&team_b));
+    // //tom->setScore(0);
+    // Team team_c(sam);
+    // TrainedNinja *chai = new TrainedNinja("cahi", p2);
+    // YountNinja *fol = new YountNinja("fol", p3);
+    // Cowboy *erv = new Cowboy("erv", p1);
+    // team_c.add(chai);
+    // team_c.add(fol);
+    // team_c.add(erv);
+    // tom->print();
+    // tom->hit(11);
+    // team_a.print();
+    // team_a.attack(&team_c);
+    // CHECK(team_a.getTeamLeader().getName() == "shushi");
+
+
+
+}

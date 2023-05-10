@@ -6,7 +6,7 @@
 using namespace std;
      
 namespace ariel {
-    class Team2 : protected Team {
+    class Team2 : public Team {
         public:
             void print();
             

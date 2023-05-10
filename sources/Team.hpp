@@ -18,15 +18,16 @@ namespace ariel {
             Character& team_leader;
         public:
             Team(Character *leader);
-            void add(Character* warrier);
+            virtual void add(Character* warrier);
             void attack(Team * enemies);
+            Character& getTeamLeader();
             void findClosestTeamLeader();
             Character* findClosestVictim(Team* enemies);
             void killVictim(Team* enemies);
             bool isCowboy(Character* warrier);
             int stillAlive();
             virtual void print();
-            void distructor();
+            void destructor();
 
 
 

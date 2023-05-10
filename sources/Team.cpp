@@ -9,11 +9,14 @@ namespace ariel
     {
         return typeid(warrier) == typeid(Cowboy);
     }
+    Character& Team::getTeamLeader()
+    {
+        return this->team_leader;
+    }
 
     void Team::add(Character* warrior) {
     if (Cowboy* cowboy = dynamic_cast<Cowboy*>(warrior)) {
-        cout << "cowboy added" << endl;
-        cout << "Member is of type " << warrior->getType().name() << endl;
+        
         for (int i = 0; i < 10; i++) {
             if (!members[i]) {
                 members[i] = cowboy;
@@ -22,8 +25,7 @@ namespace ariel
         }
     }
     else if (Ninja* ninja = dynamic_cast<Ninja*>(warrior)) {
-        cout << "ninja added" << endl;
-        cout << "Member is of type " << warrior->getType().name() << endl;
+        
         for (int i = 0; i < 10; i++) {
             if (!members[i]) {
                 members[i] = ninja;
@@ -101,11 +103,11 @@ namespace ariel
         //enemies->print();
         Character *victim = findClosestVictim(enemies);
         //this->print();
-
         for (int i = 0; i < 10; i++)
         {
             if (members[i] && members[i]->isAlive())
             {
+                if(victim->isAlive()){
                 if (Cowboy *cowboy = dynamic_cast<Cowboy *>(members[i]))
                 {
                     if (cowboy->hasboolets())
@@ -122,6 +124,8 @@ namespace ariel
                     if (ninja->distance(victim) <= 1)
                     {
                         ninja->slash(victim);
+                        cout <<"victim : ";
+                        victim->print();
                     }
                     else
                     {
@@ -133,18 +137,20 @@ namespace ariel
                     cout << typeid(*members[i]).name() << endl;
                     cout << "Member is neither Cowboy nor Ninja!" << endl;
                 }
+            }else{
+                break;
             }
         }
+    }
     }
 
     // Main attack function
     void Team::attack(Team *enemies)
     {
-         if (enemies == nullptr)
-    {
-        cout << "Error: no enemies specified." << endl;
-        return;
-    }
+         if (enemies->stillAlive() ==0)
+         {
+            throw("exception");
+         }
         //cout << "attack"<< endl;
 
         if (!team_leader.isAlive())
@@ -187,7 +193,7 @@ namespace ariel
         }
     }
 
-    void Team::distructor()
+    void Team::destructor()
     {
         for (int i = 0; i < 10; i++)
         {
